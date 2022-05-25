@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
-import Box from './components/Box';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import Counter from './components/Counter';
+
+const styles = StyleSheet.create({
+  full: {
+    flex: 1,
+  },
+});
 
 const App = () => {
-  const [visible, setVisible] = useState(true);
+  const [count, setCount] = useState(0);
 
-  const onPress = () => {
-    setVisible(!visible);
-  };
+  const onIncrease = () => setCount(count + 1);
+  const onDecrease = () => setCount(count - 1);
 
   return (
-    <SafeAreaView>
-      <Button title={'toggle'} onPress={onPress} />
-      {visible && <Box rounded size={'large'} color={'blue'} />}
+    <SafeAreaView style={styles.full}>
+      <Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
     </SafeAreaView>
   );
 };
