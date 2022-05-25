@@ -9,4 +9,8 @@ const Greeting = ({name}) => {
   );
 };
 
+Greeting.defaultProps = {
+  name: 'React Native',
+};
+
 export default Greeting;
