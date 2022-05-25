@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Greeting = () => {
+const Greeting = ({name}) => {
   return (
     <View>
-      <Text>Hello Functional Component!</Text>
+      <Text>Hello {name}!</Text>
     </View>
   );
 };
