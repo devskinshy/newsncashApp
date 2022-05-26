@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import DateHead from './components/DateHead';
 import AddTodo from './components/AddTodo';
@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  avoid: {
+    flex: 1,
+  },
 });
 
 const App = () => {
@@ -18,9 +21,14 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView edges={['bottom']} style={styles.block}>
-        <DateHead date={today} />
-        <Empty />
-        <AddTodo />
+        <KeyboardAvoidingView
+          // behavior={Platform.OS === 'ios' && 'padding'}
+          behavior={Platform.select({ios: 'padding'})}
+          style={styles.avoid}>
+          <DateHead date={today} />
+          <Empty />
+          <AddTodo />
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
