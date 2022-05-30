@@ -6,10 +6,13 @@ import NewsScreen from './NewsScreen';
 import SearchScreen from './SearchScreen';
 import SettingScreen from './SettingScreen';
 import SearchHeader from '../components/search/SearchHeader';
+import storageManager from '../utils/storageManager';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
+  // storageManager.remove();
+
   return (
     <>
       <StatusBar />
@@ -30,7 +33,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="search" size={size} color={color} />
             ),
-            headerTitle: () => <SearchHeader />,
+            // headerTitle: () => <SearchHeader />,
           }}
         />
         <Tab.Screen
