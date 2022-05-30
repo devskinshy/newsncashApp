@@ -12,21 +12,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 const InitScreen = () => {
-  // const navigation = useNavigation();
-  // const {storages} = useSelector(({setting}) => ({
-  //   storages: setting.storages,
-  // }));
-
-  // const onMove = () => {
-  //   navigation.navigate('MainScreen');
-  // };
-
-  // const onDone = async () => {
-  //   console.log(storages);
-  //   await storageManager.set('storage', storages);
-  //   onMove();
-  // };
-
   return (
     <Stack.Navigator
       initialRouteName="Gender"

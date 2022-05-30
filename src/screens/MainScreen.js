@@ -33,7 +33,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="search" size={size} color={color} />
             ),
-            headerTitle: () => <SearchHeader />,
+            // headerTitle: () => <SearchHeader />,
           }}
         />
         <Tab.Screen
