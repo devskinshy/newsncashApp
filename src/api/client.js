@@ -6,8 +6,6 @@ export const client = axios.create({
 });
 
 client.interceptors.response.use(response => {
-  // console.log('response', response)
-
   if (!response?.data?.data || response?.data?.r !== SUCCESS_CODE) {
     throw new Error(response?.data?.rd || '장애가 발생하였습니다.');
   }

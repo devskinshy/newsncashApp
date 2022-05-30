@@ -1,31 +1,26 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import EmptySearchResult from '../components/search/EmptySearchResult';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React, {useCallback, useEffect} from 'react';
 import SearchHeader from '../components/search/SearchHeader';
+import Search from '../components/webPage/Search';
+import {useDispatch} from 'react-redux';
+import {settingKeyword} from '../redux/modules/search';
 
-const styles = StyleSheet.create({
-  block: {
-    flex: 1,
-  },
-});
+const SearchScreen = ({navigation}) => {
+  const dispatch = useDispatch();
 
-const SearchScreen = ({inputText = '', navigation}) => {
+  const handleOnPress = useCallback(
+    keyword => {
+      dispatch(settingKeyword(keyword));
+    },
+    [dispatch],
+  );
+
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: () => <SearchHeader />,
+      headerTitle: () => <SearchHeader handleOnPress={handleOnPress} />,
     });
-    console.log('navigation.setOptions', navigation.setOptions.headerTitle);
-  }, [navigation]);
+  }, [navigation, handleOnPress]);
 
-  if (!inputText) {
-    return <EmptySearchResult type={'EMPTY_KEYWORD'} />;
-  }
-  return (
-    <View style={styles.block}>
-      <Text>SearchScreen</Text>
-    </View>
-  );
+  return <Search />;
 };
 
 export default SearchScreen;

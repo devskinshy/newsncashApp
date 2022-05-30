@@ -1,20 +1,43 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import Detail from '../components/webPage/Detail';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Bookmark from '../components/detail/Bookmark';
+import {useDispatch, useSelector} from 'react-redux';
+import {addBookmark, deleteBookmark} from '../redux/modules/setting';
+import storageManager from '../utils/storageManager';
 
 const DetailScreen = ({route, navigation}) => {
-  const test = '20220527.0013208287.001';
+  const {
+    params: {idsk},
+  } = route;
+  const dispatch = useDispatch();
+  const {bookmark} = useSelector(({setting}) => ({
+    bookmark: setting.bookmark,
+  }));
+
+  const selectedChecker = useCallback(
+    () => bookmark.includes(idsk),
+    [bookmark, idsk],
+  );
+
+  const handleOnPress = useCallback(() => {
+    if (selectedChecker()) {
+      dispatch(deleteBookmark(idsk));
+    } else {
+      dispatch(addBookmark(idsk));
+    }
+  }, [dispatch, idsk, selectedChecker]);
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Icon
-          name="bookmark"
-          size={24}
-          color={route.params.idsk === test ? '#333' : '#f6f6f6'}
-        />
+        <Bookmark selected={selectedChecker()} handleOnPress={handleOnPress} />
       ),
     });
-  }, [navigation, route]);
+  }, [handleOnPress, navigation, route, selectedChecker]);
+
+  useEffect(() => {
+    storageManager.set('bookmark', bookmark);
+  }, [bookmark]);
 
   return <Detail data={route.params} />;
 };

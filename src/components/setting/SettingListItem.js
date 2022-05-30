@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const SettingListItem = ({title, icon}) => {
+const SettingListItem = ({title, icon, onPress}) => {
   return (
-    <TouchableOpacity style={styles.box}>
+    <TouchableOpacity style={styles.box} onPress={onPress}>
       <View style={styles.titleWrap}>
         <Icon name={icon} size={36} color="#4b4b4b" />
         <Text style={styles.titleText}>{title}</Text>

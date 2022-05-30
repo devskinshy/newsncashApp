@@ -5,8 +5,6 @@ import {WEB_URL} from '../../config';
 const Detail = ({data}) => {
   const webRef = useRef(null);
 
-  console.log(data);
-
   const handleOnLoadEnd = () => {
     let init = {
       type: 'DETAIL_INIT',

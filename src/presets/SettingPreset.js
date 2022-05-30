@@ -6,7 +6,6 @@ const SettingPreset = ({children}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('SettingPreset', 'init');
     dispatch(initialize());
   }, [dispatch]);
 

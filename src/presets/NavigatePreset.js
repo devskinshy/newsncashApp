@@ -8,6 +8,7 @@ import InitScreen from '../screens/InitScreen';
 import MainScreen from '../screens/MainScreen';
 import DetailScreen from '../screens/DetailScreen';
 import Error from '../components/Error';
+import BookMarkScreen from '../screens/BookMarkScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,7 @@ const NavigatePreset = () => {
           component={DetailScreen}
           // options={{headerShown: false}}
         />
+        <Stack.Screen name="BookMarkScreen" component={BookMarkScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

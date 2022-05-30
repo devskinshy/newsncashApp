@@ -1,12 +1,7 @@
 import React from 'react';
-import AppIntroSlider from 'react-native-app-intro-slider';
-import {useNavigation} from '@react-navigation/native';
-import {StyleSheet} from 'react-native';
-import SelectCategoryGender from '../components/init/SelectCategoryGender';
-import SelectCategoryAge from '../components/init/SelectCategoryAge';
-import SelectCategoryNews from '../components/init/SelectCategoryNews';
-import storageManager from '../utils/storageManager';
-import {useSelector} from 'react-redux';
+import SelectCategoryGender from './init/SelectCategoryGender';
+import SelectCategoryAge from './init/SelectCategoryAge';
+import SelectCategoryNews from './init/SelectCategoryNews';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();

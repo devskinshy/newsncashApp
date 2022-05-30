@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Keyboard,
   Pressable,
   StyleSheet,
   TextInput,
@@ -21,10 +22,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchHeader = () => {
+const SearchHeader = ({handleOnPress}) => {
   const {width} = useWindowDimensions();
-  const [keyword, onChangeText] = useState('');
-  console.log('keyword', keyword);
+  const [keyword, setText] = useState('');
+
+  const onPress = () => {
+    handleOnPress && handleOnPress(keyword);
+    Keyboard.dismiss();
+  };
+  const onClean = () => {
+    setText('');
+  };
+
   return (
     <View style={[styles.block, {width: width - 32}]}>
       <TextInput
@@ -32,11 +41,13 @@ const SearchHeader = () => {
         placeholder="검색어를 입력하세요"
         autoFocus
         value={keyword}
-        onChangeText={onChangeText}
+        onChangeText={setText}
+        onSubmitEditing={onPress}
+        returnKeyType={'done'}
       />
       <Pressable
         style={({pressed}) => [styles.button, pressed && {opacity: 0.5}]}
-        onPress={() => console.log('delete')}>
+        onPress={onClean}>
         <Icon name="cancel" size={20} color="#999999" />
       </Pressable>
     </View>

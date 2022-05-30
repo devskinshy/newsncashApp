@@ -122,8 +122,7 @@ const SelectCategoryNews = ({navigation}) => {
 
   const onDone = async () => {
     await storageManager.set('storage', storages);
-    console.log(storages);
-    navigation.navigate('MainScreen');
+    navigation.navigate('News');
   };
 
   return (
