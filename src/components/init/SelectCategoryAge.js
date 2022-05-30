@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {Picker} from '@react-native-picker/picker';
 import {useDispatch, useSelector} from 'react-redux';
@@ -15,9 +15,31 @@ const styles = StyleSheet.create({
     marginTop: 150,
     fontWeight: 'bold',
   },
+  navigateBtnWrap: {
+    alignItems: 'center',
+  },
+  navigateBtn: {
+    marginTop: 50,
+    width: '80%',
+    backgroundColor: '#4b4b4b',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
+  navigatePrevBtn: {
+    marginTop: 10,
+    width: '80%',
+    backgroundColor: '#c9c9c9',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
+  navigateText: {
+    color: '#fff',
+  },
 });
 
-const SelectCategoryAge = () => {
+const SelectCategoryAge = ({navigation}) => {
   const pickerRef = useRef();
   const dispatch = useDispatch();
   const {age} = useSelector(({setting: {storages}}) => ({
@@ -42,7 +64,7 @@ const SelectCategoryAge = () => {
 
   return (
     <View style={styles.box}>
-      <Text style={styles.title}>당신의 성별은 무엇입니까?</Text>
+      <Text style={styles.title}>당신의 나이대를 입력해주세요.</Text>
 
       <Picker
         ref={pickerRef}
@@ -51,6 +73,19 @@ const SelectCategoryAge = () => {
         onValueChange={onValueChange}>
         {renderItem()}
       </Picker>
+      <View style={styles.navigateBtnWrap}>
+        <TouchableOpacity
+          style={styles.navigateBtn}
+          onPress={() => navigation.navigate('IntroNews')}>
+          <Text style={styles.navigateText}>NEXT</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.navigatePrevBtn}
+          onPress={() => navigation.navigate('IntroGender')}>
+          <Text style={styles.navigateText}>PREV</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

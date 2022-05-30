@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {useDispatch, useSelector} from 'react-redux';
 import {settingInitialize} from '../../redux/modules/setting';
@@ -34,9 +41,23 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
+  navigateBtnWrap: {
+    alignItems: 'center',
+  },
+  navigateBtn: {
+    marginTop: 50,
+    width: '80%',
+    backgroundColor: '#4b4b4b',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
+  navigateText: {
+    color: '#fff',
+  },
 });
 
-const SelectCategoryGender = () => {
+const SelectCategoryGender = ({navigation}) => {
   const dispatch = useDispatch();
   const {gender} = useSelector(({setting: {storages}}) => ({
     gender: storages.gender,
@@ -69,6 +90,14 @@ const SelectCategoryGender = () => {
       <Text style={styles.title}>당신의 성별은 무엇입니까?</Text>
 
       <View style={styles.btnBox}>{renderItem()}</View>
+
+      <View style={styles.navigateBtnWrap}>
+        <TouchableOpacity
+          style={styles.navigateBtn}
+          onPress={() => navigation.navigate('IntroAge')}>
+          <Text style={styles.navigateText}>NEXT</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
