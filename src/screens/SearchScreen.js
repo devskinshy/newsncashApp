@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import EmptySearchResult from '../components/search/EmptySearchResult';
 
 const styles = StyleSheet.create({
   block: {
@@ -8,10 +7,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchScreen = ({inputText = ''}) => {
-  if (!inputText) {
-    return <EmptySearchResult type={'EMPTY_KEYWORD'} />;
-  }
+const SearchScreen = () => {
   return (
     <View style={styles.block}>
       <Text>SearchScreen</Text>

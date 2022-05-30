@@ -1,17 +1,28 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Web from '../Web';
 import {WEB_URL} from '../../config';
 
 const Detail = ({data}) => {
-  const getInitData = () => {
+  const webRef = useRef(null);
+
+  console.log(data);
+
+  const handleOnLoadEnd = () => {
     let init = {
       type: 'DETAIL_INIT',
       data,
     };
-    return init;
+
+    webRef.current.postMessage(JSON.stringify(init));
   };
 
-  return <Web uri={`${WEB_URL}/post`} initData={getInitData()} />;
+  return (
+    <Web
+      ref={webRef}
+      uri={`${WEB_URL}/detail`}
+      handleOnLoadEnd={handleOnLoadEnd}
+    />
+  );
 };
 
 export default Detail;

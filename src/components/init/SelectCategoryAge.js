@@ -33,10 +33,14 @@ const SelectCategoryAge = () => {
   };
 
   const renderItem = () => {
-    const items = [...Array(100)];
+    const items = [...Array(6)];
 
     return items.map((_, index) => (
-      <Picker.Item key={index} label={`${index}`} value={index} />
+      <Picker.Item
+        key={index}
+        label={`${(index + 1) * 10}대`}
+        value={`${(index + 1) * 10}age`}
+      />
     ));
   };
 

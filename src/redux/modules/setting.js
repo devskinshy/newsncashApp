@@ -16,7 +16,7 @@ const initialState = {
   },
   storages: {
     gender: '',
-    age: 0,
+    age: '',
     oid_list: [],
   },
 };

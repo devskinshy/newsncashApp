@@ -1,16 +1,17 @@
-import React from 'react';
-import Web from '../Web';
+import React, {useRef} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {WEB_URL} from '../../config';
+import Web from '../Web';
 
 const List = ({code, value}) => {
+  const webRef = useRef(null);
   const {storages} = useSelector(({setting}) => ({
     storages: setting.storages,
   }));
   const navigation = useNavigation();
 
-  const getInitData = () => {
+  const handleOnLoadEnd = () => {
     let init = {
       type: 'LIST_INIT',
       data: {...storages},
@@ -22,7 +23,7 @@ const List = ({code, value}) => {
       init.data['category'] = value;
     }
 
-    return init;
+    webRef.current.postMessage(JSON.stringify(init));
   };
 
   const handleOnMessage = ({type, data}) => {
@@ -37,8 +38,9 @@ const List = ({code, value}) => {
 
   return (
     <Web
+      ref={webRef}
       uri={`${WEB_URL}/list`}
-      initData={getInitData()}
+      handleOnLoadEnd={handleOnLoadEnd}
       handleOnMessage={handleOnMessage}
     />
   );

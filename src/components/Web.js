@@ -1,15 +1,13 @@
-import React, {useRef} from 'react';
+import React, {forwardRef} from 'react';
 import WebView from 'react-native-webview';
 
-const Web = ({uri, initData, handleOnMessage}) => {
-  const webRef = useRef(null);
-
+const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
   const onLoadEnd = () => {
     if (!webRef.current) {
       return;
     }
 
-    webRef.current.postMessage(JSON.stringify(initData));
+    handleOnLoadEnd && handleOnLoadEnd();
   };
 
   const onMessage = ({nativeEvent: {data}}) => {
@@ -24,6 +22,6 @@ const Web = ({uri, initData, handleOnMessage}) => {
       onMessage={onMessage}
     />
   );
-};
+});
 
 export default Web;

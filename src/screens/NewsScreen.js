@@ -13,11 +13,13 @@ const NewsScreen = () => {
   const renderItem = () => {
     const items = Object.entries(gnb).sort(([key1], [key2]) => +key1 - +key2);
 
-    return items.map(([code, value]) => (
-      <Tab.Screen key={code} name={value}>
-        {() => <List code={code} value={value} />}
-      </Tab.Screen>
-    ));
+    return items.map(([code, value]) => {
+      return (
+        <Tab.Screen key={code} name={value}>
+          {() => <List code={code} value={value} />}
+        </Tab.Screen>
+      );
+    });
   };
 
   return (
