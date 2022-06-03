@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {useDispatch, useSelector} from 'react-redux';
 import {settingInitialize} from '../../redux/modules/setting';

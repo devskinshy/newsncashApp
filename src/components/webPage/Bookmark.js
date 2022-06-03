@@ -1,5 +1,4 @@
-import React, {useRef} from 'react';
-import {Text} from 'react-native';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {useSelector} from 'react-redux';
 import {WEB_URL} from '../../config';
 import Web from '../Web';
@@ -11,8 +10,8 @@ const Bookmark = () => {
     bookmark: setting.bookmark,
   }));
   const navigation = useNavigation();
-  console.log(bookmark);
-  const handleOnLoadEnd = () => {
+
+  const handleOnLoadEnd = useCallback(() => {
     let init = {
       type: 'BOOKMARK_INIT',
       data: {
@@ -21,7 +20,11 @@ const Bookmark = () => {
     };
 
     webRef.current.postMessage(JSON.stringify(init));
-  };
+  }, [bookmark]);
+
+  useEffect(() => {
+    handleOnLoadEnd();
+  }, [bookmark, handleOnLoadEnd]);
 
   const handleOnMessage = ({type, data}) => {
     switch (type) {
@@ -32,6 +35,7 @@ const Bookmark = () => {
         break;
     }
   };
+
   return (
     <Web
       ref={webRef}

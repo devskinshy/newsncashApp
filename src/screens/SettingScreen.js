@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Alert} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import SettingListItem from '../components/setting/SettingListItem';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';

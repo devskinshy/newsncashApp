@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -122,7 +122,7 @@ const SelectCategoryNews = ({navigation}) => {
 
   const onDone = async () => {
     await storageManager.set('storage', storages);
-    navigation.navigate('News');
+    navigation.reset({routes: [{name: 'MainScreen'}]});
   };
 
   return (
