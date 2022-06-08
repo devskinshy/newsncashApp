@@ -9,6 +9,8 @@ import MainScreen from '../screens/MainScreen';
 import DetailScreen from '../screens/DetailScreen';
 import Error from '../components/Error';
 import BookMarkScreen from '../screens/BookMarkScreen';
+import TOSScreen from '../screens/TOSScreen';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +50,16 @@ const NavigatePreset = () => {
           // options={{headerShown: false}}
         />
         <Stack.Screen name="BookMarkScreen" component={BookMarkScreen} />
+        <Stack.Screen
+          name="TOSScreen"
+          component={TOSScreen}
+          options={{title: '서비스 이용약관'}}
+        />
+        <Stack.Screen
+          name="PrivacyPolicyScreen"
+          component={PrivacyPolicyScreen}
+          options={{title: '개인정보 처리방침'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

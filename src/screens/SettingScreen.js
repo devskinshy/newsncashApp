@@ -20,6 +20,14 @@ const SettingScreen = () => {
     navigation.navigate('BookMarkScreen');
   };
 
+  const onMoveTOSScreen = () => {
+    navigation.navigate('TOSScreen');
+  };
+
+  const onMovePrivacyPolicyScreen = () => {
+    navigation.navigate('PrivacyPolicyScreen');
+  };
+
   const handleOnReset = () => {
     Alert.alert('사용자 정보 재설정', '사용자 정보를 재설정 하시겠습니까?', [
       {
@@ -48,6 +56,16 @@ const SettingScreen = () => {
         title="추천 재설정"
         icon="recommend"
         onPress={handleOnReset}
+      />
+      <SettingListItem
+        title="서비스 이용약관"
+        icon="room-service"
+        onPress={onMoveTOSScreen}
+      />
+      <SettingListItem
+        title="개인정보 처리방침"
+        icon="privacy-tip"
+        onPress={onMovePrivacyPolicyScreen}
       />
     </View>
   );
