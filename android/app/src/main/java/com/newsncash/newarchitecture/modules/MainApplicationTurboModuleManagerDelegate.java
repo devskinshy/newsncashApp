@@ -1,4 +1,4 @@
-package com.learnreactnative.newarchitecture.modules;
+package com.newsncash.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

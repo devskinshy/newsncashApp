@@ -1,9 +1,10 @@
 {
-  "name": "learnreactnative",
-  "version": "0.0.1",
+  "name": "newsncash",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "nox": "react-native run-android --deviceId=127.0.0.1:62001",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
