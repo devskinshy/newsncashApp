@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
   navigateText: {
     color: '#fff',
   },
+  pickerWrap: {
+    marginTop: 20,
+    marginLeft: 50,
+    marginRight: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: '#dedede',
+  },
 });
 
 const SelectCategoryAge = ({navigation}) => {
@@ -69,14 +76,15 @@ const SelectCategoryAge = ({navigation}) => {
   return (
     <View style={styles.box}>
       <Text style={styles.title}>당신의 나이대를 입력해주세요.</Text>
-
-      <Picker
-        ref={pickerRef}
-        mode="dialog"
-        selectedValue={age}
-        onValueChange={onValueChange}>
-        {renderItem()}
-      </Picker>
+      <View style={styles.pickerWrap}>
+        <Picker
+          ref={pickerRef}
+          mode="dialog"
+          selectedValue={age}
+          onValueChange={onValueChange}>
+          {renderItem()}
+        </Picker>
+      </View>
       <View style={styles.navigateBtnWrap}>
         <TouchableOpacity
           style={styles.navigateBtn}
