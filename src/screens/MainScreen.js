@@ -21,7 +21,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="text-snippet" size={size} color={color} />
             ),
-            title: '홈',
+            title: '뉴스',
           }}
         />
         <Tab.Screen
