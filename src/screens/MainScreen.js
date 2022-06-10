@@ -21,6 +21,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="text-snippet" size={size} color={color} />
             ),
+            title: '홈',
           }}
         />
         <Tab.Screen
@@ -30,6 +31,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="search" size={size} color={color} />
             ),
+            title: '검색',
           }}
         />
         <Tab.Screen
@@ -39,6 +41,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="bookmark" size={size} color={color} />
             ),
+            title: '북마크',
           }}
         />
         <Tab.Screen
@@ -48,6 +51,7 @@ const MainScreen = () => {
             tabBarIcon: ({color, size}) => (
               <Icon name="settings" size={size} color={color} />
             ),
+            title: '설정',
           }}
         />
       </Tab.Navigator>

@@ -18,9 +18,9 @@ const List = ({code, value}) => {
     };
 
     if (+code < 100) {
-      init.data['search_target'] = value;
+      init.data.search_target = value;
     } else {
-      init.data['category'] = value;
+      init.data.category = value;
     }
 
     webRef.current.postMessage(JSON.stringify(init));
