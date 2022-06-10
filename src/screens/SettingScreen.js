@@ -16,10 +16,6 @@ const SettingScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const onMoveBookMarkScreen = () => {
-    navigation.navigate('BookMarkScreen');
-  };
-
   const onMoveTOSScreen = () => {
     navigation.navigate('TOSScreen');
   };
@@ -42,16 +38,10 @@ const SettingScreen = () => {
         },
       },
     ]);
-    console.log('click');
   };
 
   return (
     <View style={styles.box}>
-      <SettingListItem
-        title="북마크"
-        icon="bookmark"
-        onPress={onMoveBookMarkScreen}
-      />
       <SettingListItem
         title="추천 재설정"
         icon="recommend"

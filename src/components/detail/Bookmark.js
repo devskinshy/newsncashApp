@@ -9,7 +9,7 @@ const Bookmark = ({selected, handleOnPress}) => {
       }}
       name="bookmark"
       size={24}
-      color={selected ? '#333' : '#f6f6f6'}
+      color={selected ? '#333' : '#dddddd'}
     />
   );
 };

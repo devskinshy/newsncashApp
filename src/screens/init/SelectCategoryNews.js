@@ -40,7 +40,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
   },
   btnSelected: {
-    backgroundColor: '#238e80',
+    backgroundColor: '#007afe',
+  },
+  btnText: {
+    color: '#333333',
+  },
+  btnSelectedText: {
+    color: '#ffffff',
   },
   navigateBtnWrap: {
     alignItems: 'center',
@@ -111,7 +117,13 @@ const SelectCategoryNews = ({navigation}) => {
         key={key}
         style={[styles.btn, selectChecker(key) && styles.btnSelected]}
         onPress={() => onPress(key)}>
-        <Text>{value}</Text>
+        <Text
+          style={[
+            styles.btnText,
+            selectChecker(key) && styles.btnSelectedText,
+          ]}>
+          {value}
+        </Text>
       </TouchableOpacity>
     ));
   };

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TOS from '../components/setting/TOS';
 
-const TOSScreen = () => {
+const TOSScreen = ({navigation}) => {
+  useEffect(() => {
+    navigation.setOptions({
+      headerBackTitleVisible: false,
+    });
+  }, [navigation]);
   return <TOS />;
 };
 

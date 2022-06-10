@@ -32,6 +32,8 @@ const DetailScreen = ({route, navigation}) => {
       headerRight: () => (
         <Bookmark selected={selectedChecker()} handleOnPress={handleOnPress} />
       ),
+      title: '',
+      headerBackTitleVisible: false,
     });
   }, [handleOnPress, navigation, route, selectedChecker]);
 
