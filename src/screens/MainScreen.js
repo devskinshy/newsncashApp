@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NewsScreen from './NewsScreen';
 import SearchScreen from './SearchScreen';
+import BookMarkScreen from './BookMarkScreen';
 import SettingScreen from './SettingScreen';
 
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,15 @@ const MainScreen = () => {
           options={{
             tabBarIcon: ({color, size}) => (
               <Icon name="search" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Bookmark"
+          component={BookMarkScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Icon name="bookmark" size={size} color={color} />
             ),
           }}
         />
