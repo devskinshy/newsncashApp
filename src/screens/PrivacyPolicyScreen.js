@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PrivacyPolicy from '../components/setting/PrivacyPolicy';
 
-const PrivacyPolicyScreen = () => {
+const PrivacyPolicyScreen = ({navigation}) => {
+  useEffect(() => {
+    navigation.setOptions({
+      headerBackTitleVisible: false,
+    });
+  }, [navigation]);
   return <PrivacyPolicy />;
 };
 

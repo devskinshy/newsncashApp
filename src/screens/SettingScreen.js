@@ -38,7 +38,6 @@ const SettingScreen = () => {
         },
       },
     ]);
-    console.log('click');
   };
 
   return (
