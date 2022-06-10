@@ -5,25 +5,26 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
     paddingBottom: 100,
   },
   title: {
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    marginBottom: 16,
-  },
-  image: {
-    width: 200,
-    height: 200,
+    marginTop: 150,
   },
   text: {
-    fontSize: 18,
+    marginTop: 10,
+    fontSize: 16,
+
     color: 'white',
     textAlign: 'center',
-    paddingVertical: 30,
+    paddingBottom: 50,
+  },
+  image: {
+    width: 300,
+    height: 300,
   },
 });
 
@@ -31,8 +32,8 @@ const IntroSlide = ({item: {backgroundColor, title, image, text}}) => {
   return (
     <View style={[styles.box, {backgroundColor}]}>
       <Text style={styles.title}>{title}</Text>
-      <Image style={styles.image} source={image} />
       <Text style={styles.text}>{text}</Text>
+      <Image style={styles.image} source={image} />
     </View>
   );
 };
