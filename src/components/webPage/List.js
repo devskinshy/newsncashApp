@@ -14,8 +14,13 @@ const List = ({code, value}) => {
   const handleOnLoadEnd = () => {
     let init = {
       type: 'LIST_INIT',
-      data: {...storages},
     };
+
+    if (+code < 10) {
+      init.data = storages;
+    } else {
+      init.data = {};
+    }
 
     if (+code < 100) {
       init.data.search_target = value;
