@@ -1,4 +1,5 @@
 import React, {forwardRef, useState} from 'react';
+import {useEffect} from 'react';
 import {ScrollView, StyleSheet, Dimensions, RefreshControl} from 'react-native';
 import WebView from 'react-native-webview';
 import ListLoading from './list/ListLoading';
@@ -8,7 +9,9 @@ const styles = StyleSheet.create({
 });
 
 const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
-  const [isEnabled, setEnabled] = useState(false);
+  let timer;
+  const [isScrolled, setScrolled] = useState(false);
+  const [isEnabled, setEnabled] = useState(true);
 
   const onLoadEnd = () => {
     if (!webRef.current) {
@@ -31,25 +34,31 @@ const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
   };
 
   return (
-    // <ListLoading />
     <ScrollView
       contentContainerStyle={styles.view}
       refreshControl={
         <RefreshControl
-          // refreshing={refreshing}
-          onRefresh={onRefresh}
           refreshing={false}
           enabled={isEnabled}
+          onRefresh={onRefresh}
         />
       }>
       <WebView
-        onScroll={e => setEnabled(e.nativeEvent.contentOffset.y === 0)}
+        onScroll={e => {
+          setEnabled(e.nativeEvent.contentOffset.y === 0);
+          setScrolled(true);
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            setScrolled(false);
+          }, 1000);
+        }}
         ref={webRef}
         source={{uri}}
         startInLoadingState={true}
         renderLoading={() => <ListLoading />}
         onLoadEnd={onLoadEnd}
         onMessage={onMessage}
+        nestedScrollEnabled={isScrolled}
       />
     </ScrollView>
   );
