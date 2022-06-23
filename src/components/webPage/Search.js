@@ -35,7 +35,7 @@ const Search = () => {
 
   return (
     <Web
-      ref={webRef}
+      ref={ref => (webRef.current = ref)}
       uri={`${WEB_URL}/search`}
       handleOnMessage={handleOnMessage}
     />
