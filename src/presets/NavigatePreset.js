@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Loading from '../components/Loading';
 import IntroScreen from '../screens/IntroScreen';
@@ -11,8 +11,17 @@ import Error from '../components/Error';
 import BookMarkScreen from '../screens/BookMarkScreen';
 import TOSScreen from '../screens/TOSScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
+import {StyleSheet} from 'react-native';
 
 const Stack = createNativeStackNavigator();
+
+const styles = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#ffffff',
+  },
+};
 
 const NavigatePreset = () => {
   const {loading, error, isInitialized} = useSelector(({loading, setting}) => ({
@@ -26,7 +35,7 @@ const NavigatePreset = () => {
   ) : error ? (
     <Error />
   ) : (
-    <NavigationContainer>
+    <NavigationContainer theme={styles}>
       <Stack.Navigator
         initialRouteName={isInitialized ? 'MainScreen' : 'IntroScreen'}>
         <Stack.Screen
