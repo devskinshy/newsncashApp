@@ -6,14 +6,10 @@ import NewsScreen from './NewsScreen';
 import SearchScreen from './SearchScreen';
 import BookMarkScreen from './BookMarkScreen';
 import SettingScreen from './SettingScreen';
-import MypageScreen from './MypageScreen';
-import LoginScreen from './LoginScreen';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = () => {
-  const login = false;
-
   return (
     <>
       <StatusBar />
@@ -48,30 +44,6 @@ const MainScreen = () => {
             title: '북마크',
           }}
         />
-        {!login ? (
-          <Tab.Screen
-            name="Mypage"
-            component={LoginScreen}
-            options={{
-              tabBarIcon: ({color, size}) => (
-                <Icon name="person" size={size} color={color} />
-              ),
-              title: '마이페이지',
-              headerShown: false,
-            }}
-          />
-        ) : (
-          <Tab.Screen
-            name="Mypage"
-            component={MypageScreen}
-            options={{
-              tabBarIcon: ({color, size}) => (
-                <Icon name="person" size={size} color={color} />
-              ),
-              title: '마이페이지',
-            }}
-          />
-        )}
         <Tab.Screen
           name="Setting"
           component={SettingScreen}
