@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "nox": "react-native run-android --deviceId=127.0.0.1:62001",
+    "nox": "adb kill-server && adb connect 127.0.0.1:62001 && react-native run-android --deviceId=127.0.0.1:62001",
+    "phone": "adb kill-server && react-native run-android --deviceId=R3CR209LEPA",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -13,6 +14,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-picker/picker": "^2.4.1",
+    "@react-native-seoul/kakao-login": "^4.2.2",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/material-top-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.10",
