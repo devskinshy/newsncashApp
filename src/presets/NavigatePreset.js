@@ -12,7 +12,6 @@ import BookMarkScreen from '../screens/BookMarkScreen';
 import TOSScreen from '../screens/TOSScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 import {AppState, StyleSheet} from 'react-native';
-import MypageScreen from '../screens/MypageScreen';
 import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
