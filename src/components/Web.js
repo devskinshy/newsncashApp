@@ -5,7 +5,11 @@ import WebView from 'react-native-webview';
 import ListLoading from './list/ListLoading';
 
 const styles = StyleSheet.create({
-  view: {flex: 1, height: '100%'},
+  view: {flex: 1, height: '100%', position: 'relative'},
+  refreshControl: {
+    backgroundColor: '#cccccc',
+    position: 'absolute',
+  },
 });
 
 const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
@@ -41,6 +45,7 @@ const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
           refreshing={false}
           enabled={isEnabled}
           onRefresh={onRefresh}
+          styles={styles.refreshControl}
         />
       }>
       <WebView
