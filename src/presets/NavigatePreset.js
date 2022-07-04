@@ -13,6 +13,7 @@ import TOSScreen from '../screens/TOSScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 import {StyleSheet} from 'react-native';
 
+
 const Stack = createNativeStackNavigator();
 
 const styles = {
