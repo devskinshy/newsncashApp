@@ -11,7 +11,6 @@ import Error from '../components/Error';
 import BookMarkScreen from '../screens/BookMarkScreen';
 import TOSScreen from '../screens/TOSScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
-import {StyleSheet} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,11 +52,7 @@ const NavigatePreset = () => {
           component={MainScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="DetailScreen"
-          component={DetailScreen}
-          // options={{headerShown: false}}
-        />
+        <Stack.Screen name="DetailScreen" component={DetailScreen} />
         <Stack.Screen name="BookMarkScreen" component={BookMarkScreen} />
         <Stack.Screen
           name="TOSScreen"

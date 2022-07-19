@@ -5,35 +5,33 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     alignItems: 'center',
-    paddingBottom: 100,
   },
   title: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#101010',
     textAlign: 'center',
-    marginTop: 150,
+    marginTop: 16,
   },
   text: {
-    marginTop: 10,
+    marginTop: 150,
     fontSize: 16,
-
-    color: 'white',
+    color: '#2260FF',
     textAlign: 'center',
-    paddingBottom: 50,
   },
   image: {
-    width: 300,
-    height: 300,
+    marginTop: 100,
+    width: 250,
+    height: 250,
   },
 });
 
 const IntroSlide = ({item: {backgroundColor, title, image, text}}) => {
   return (
     <View style={[styles.box, {backgroundColor}]}>
-      <Text style={styles.title}>{title}</Text>
       <Text style={styles.text}>{text}</Text>
-      <Image style={styles.image} source={image} />
+      <Text style={styles.title}>{title}</Text>
+      <Image style={styles.image} source={image} resizeMode="contain" />
     </View>
   );
 };
