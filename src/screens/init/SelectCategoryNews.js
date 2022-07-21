@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,34 +14,47 @@ import storageManager from '../../utils/storageManager';
 
 const styles = StyleSheet.create({
   box: {
+    flex: 1,
     marginTop: getStatusBarHeight(),
     paddingTop: 0,
-    paddingBottom: 360,
+  },
+  scrollWrap: {
+    paddingTop: 50,
+    height: 400,
+    alignItems: 'center',
   },
   scroll: {
+    width: '83%',
     flexGrow: 1,
     justifyContent: 'space-evenly',
+    alignItems: 'center',
     flexWrap: 'wrap',
     flexDirection: 'row',
   },
   title: {
-    textAlign: 'center',
-    fontSize: 24,
-    marginTop: 50,
-    marginBottom: 20,
+    fontSize: 20,
     fontWeight: 'bold',
+    color: '#101010',
+    marginTop: 80,
+    textAlign: 'center',
   },
   btn: {
     width: '30%',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
-    backgroundColor: '#ddd',
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#A4A4A4',
+    borderRadius: 5,
+    fontWeight: 'normal',
   },
   btnSelected: {
-    backgroundColor: '#007afe',
+    fontWeight: 900,
+    borderColor: '#3D8AFD',
+    backgroundColor: '#3D8AFD',
   },
   btnText: {
     color: '#333333',
@@ -49,25 +63,31 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   navigateBtnWrap: {
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
+
+    marginBottom: 100,
   },
   navigateBtn: {
-    marginTop: 50,
     width: '80%',
-    backgroundColor: '#4b4b4b',
+    borderRadius: 5,
+    backgroundColor: '#393939',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
   },
   navigatePrevBtn: {
     marginTop: 10,
     width: '80%',
-    backgroundColor: '#c9c9c9',
+    borderRadius: 5,
+    backgroundColor: '#A6A6A6',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
   },
   navigateText: {
+    padding: 15,
+    fontWeight: 'bold',
+    fontSize: 16,
     color: '#fff',
   },
 });
@@ -138,13 +158,15 @@ const SelectCategoryNews = ({navigation}) => {
   };
 
   return (
-    <View style={styles.box}>
+    <SafeAreaView style={styles.box}>
       <Text style={styles.title}>
-        선호하는 언론사를 {SELECTED_LIMIT}개 선택해주세요
+        선호하는 언론사를 {SELECTED_LIMIT}개 선택해주세요 (선택)
       </Text>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {renderItem()}
-      </ScrollView>
+      <View style={styles.scrollWrap}>
+        <ScrollView contentContainerStyle={styles.scroll}>
+          {renderItem()}
+        </ScrollView>
+      </View>
       <View style={styles.navigateBtnWrap}>
         <TouchableOpacity style={styles.navigateBtn} onPress={onDone}>
           <Text style={styles.navigateText}>DONE</Text>
@@ -156,7 +178,7 @@ const SelectCategoryNews = ({navigation}) => {
           <Text style={styles.navigateText}>PREV</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

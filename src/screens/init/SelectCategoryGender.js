@@ -1,51 +1,76 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {settingInitialize} from '../../redux/modules/setting';
 
 const styles = StyleSheet.create({
   box: {
-    marginTop: getStatusBarHeight(),
+    flex: 1,
   },
   title: {
-    textAlign: 'center',
-    fontSize: 24,
-    marginTop: 120,
+    fontSize: 20,
     fontWeight: 'bold',
+    color: '#101010',
+    marginTop: 135,
+    textAlign: 'center',
   },
   btnBox: {
-    marginTop: 20,
+    marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   btn: {
     color: '#333333',
     margin: 10,
-    width: 150,
-    height: 150,
+    width: 155,
+    height: 155,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ECECEC',
+    borderWidth: 1,
+    borderColor: '#9D9D9D',
+    borderRadius: 10,
   },
   btnSelected: {
-    borderRadius: 10,
-    backgroundColor: '#ddd',
+    borderColor: '#3D8AFD',
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
   },
   btnImage: {
     display: 'flex',
-    width: 150,
-    height: 150,
+    width: 80,
+    height: 80,
   },
   navigateBtnWrap: {
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    marginBottom: 100,
   },
   navigateBtn: {
-    marginTop: 50,
     width: '80%',
-    backgroundColor: '#4b4b4b',
+    borderRadius: 5,
+    backgroundColor: '#393939',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
   },
   navigateText: {
+    padding: 15,
+    fontWeight: 'bold',
+    fontSize: 16,
     color: '#fff',
   },
 });
@@ -64,22 +89,34 @@ const SelectCategoryGender = ({navigation}) => {
 
   const renderItem = () => {
     const items = [
-      {value: 'male', image: require('../../assets/male.png')},
-      {value: 'female', image: require('../../assets/female.png')},
+      {
+        value: 'male',
+        button: require('../../assets/male.png'),
+        selectedButton: require('../../assets/male_selected.png'),
+      },
+      {
+        value: 'female',
+        button: require('../../assets/female.png'),
+        selectedButton: require('../../assets/female_selected.png'),
+      },
     ];
 
-    return items.map(({value, image}) => (
+    return items.map(({value, button, selectedButton}) => (
       <TouchableOpacity
         key={value}
         style={[styles.btn, selectedChecker(value) && styles.btnSelected]}
         onPress={() => onPress(value)}>
-        <Image source={image} resizeMode="contain" style={styles.btnImage} />
+        <Image
+          source={selectedChecker(value) ? selectedButton : button}
+          resizeMode="contain"
+          style={styles.btnImage}
+        />
       </TouchableOpacity>
     ));
   };
 
   return (
-    <View style={styles.box}>
+    <SafeAreaView style={styles.box}>
       <Text style={styles.title}>당신의 성별은 무엇입니까?</Text>
 
       <View style={styles.btnBox}>{renderItem()}</View>
@@ -91,7 +128,7 @@ const SelectCategoryGender = ({navigation}) => {
           <Text style={styles.navigateText}>NEXT</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
