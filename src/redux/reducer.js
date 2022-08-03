@@ -2,16 +2,14 @@ import {combineReducers} from 'redux';
 import {all} from 'redux-saga/effects';
 
 import loading from './modules/loading';
-import setting, {settingSaga} from './modules/setting';
-import search from './modules/search';
+import config, {configSaga} from './modules/config';
 
 const rootReducer = combineReducers({
   loading,
-  setting,
-  search,
+  config,
 });
 export function* rootSaga() {
-  yield all([settingSaga()]);
+  yield all([configSaga()]);
 }
 
 export default rootReducer;

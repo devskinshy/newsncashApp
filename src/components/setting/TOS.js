@@ -5,7 +5,7 @@ import Web from '../Web';
 const TOS = () => {
   const webRef = useRef(null);
 
-  return <Web ref={webRef} uri={`${WEB_URL}/tos`} />;
+  return <Web ref={webRef} uri={`${WEB_URL}/termsOfService`} />;
 };
 
 export default TOS;

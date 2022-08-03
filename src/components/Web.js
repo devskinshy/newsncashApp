@@ -18,8 +18,15 @@ const Web = forwardRef(({uri, handleOnLoadEnd, handleOnMessage}, webRef) => {
       return;
     }
 
-    // setLoading(true);
-    handleOnLoadEnd && handleOnLoadEnd();
+    if (handleOnLoadEnd) {
+      handleOnLoadEnd();
+    } else {
+      let init = {
+        type: 'INIT',
+      };
+
+      webRef.current.postMessage(JSON.stringify(init));
+    }
   };
 
   const onMessage = ({nativeEvent: {data}}) => {

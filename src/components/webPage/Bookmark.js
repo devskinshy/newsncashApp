@@ -1,22 +1,26 @@
 import React, {useCallback, useEffect, useRef} from 'react';
-import {useSelector} from 'react-redux';
 import {WEB_URL} from '../../config';
 import Web from '../Web';
 import {useNavigation} from '@react-navigation/native';
 
-const Bookmark = () => {
+const Bookmark = ({bookmark}) => {
   const webRef = useRef(null);
-  const {bookmark} = useSelector(({setting}) => ({
-    bookmark: setting.bookmark,
-  }));
   const navigation = useNavigation();
+
+  const handleOnMessage = ({type, data}) => {
+    switch (type) {
+      case 'NEWS_SELECT':
+        navigation.navigate('DetailScreen', data);
+        break;
+      default:
+        break;
+    }
+  };
 
   const handleOnLoadEnd = useCallback(() => {
     let init = {
-      type: 'BOOKMARK_INIT',
-      data: {
-        idsk: bookmark,
-      },
+      type: 'INIT',
+      data: {bookmark},
     };
 
     webRef.current.postMessage(JSON.stringify(init));
@@ -25,16 +29,6 @@ const Bookmark = () => {
   useEffect(() => {
     handleOnLoadEnd();
   }, [bookmark, handleOnLoadEnd]);
-
-  const handleOnMessage = ({type, data}) => {
-    switch (type) {
-      case 'LIST_SELECT':
-        navigation.navigate('DetailScreen', data);
-        break;
-      default:
-        break;
-    }
-  };
 
   return (
     <Web

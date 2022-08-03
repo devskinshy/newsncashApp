@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {settingInitialize} from '../../redux/modules/setting';
+import {settingStorage} from '../../redux/modules/config';
 
 const styles = StyleSheet.create({
   box: {
@@ -77,14 +77,14 @@ const styles = StyleSheet.create({
 
 const SelectCategoryGender = ({navigation}) => {
   const dispatch = useDispatch();
-  const {gender} = useSelector(({setting: {storages}}) => ({
-    gender: storages.gender,
+  const {gender} = useSelector(({config}) => ({
+    gender: config.gender,
   }));
 
   const selectedChecker = value => gender === value;
 
   const onPress = value => {
-    dispatch(settingInitialize({gender: value}));
+    dispatch(settingStorage('gender', value));
   };
 
   const renderItem = () => {

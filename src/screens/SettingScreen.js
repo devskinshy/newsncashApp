@@ -3,7 +3,7 @@ import {View, StyleSheet, Alert} from 'react-native';
 import SettingListItem from '../components/setting/SettingListItem';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {settingReset} from '../redux/modules/setting';
+import {resetStorage} from '../redux/modules/config';
 
 const styles = StyleSheet.create({
   box: {
@@ -33,8 +33,8 @@ const SettingScreen = () => {
       {
         text: '재설정',
         onPress: () => {
-          dispatch(settingReset());
-          navigation.navigate('InitSettingScreen');
+          dispatch(resetStorage());
+          // navigation.navigate('InitSettingScreen');
         },
       },
     ]);

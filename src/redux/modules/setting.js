@@ -5,7 +5,7 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from '../createRequestSaga';
 import storageManager from '../../utils/storageManager';
-import * as SettingAPI from '../../api/setting';
+import * as SettingAPI from '../../api/config';
 
 const initialState = {
   error: null,

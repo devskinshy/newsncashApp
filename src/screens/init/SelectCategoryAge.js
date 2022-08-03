@@ -9,7 +9,7 @@ import {
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {Picker} from '@react-native-picker/picker';
 import {useDispatch, useSelector} from 'react-redux';
-import {settingInitialize} from '../../redux/modules/setting';
+import {settingStorage} from '../../redux/modules/config';
 
 const styles = StyleSheet.create({
   box: {
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
 const SelectCategoryAge = ({navigation}) => {
   const pickerRef = useRef();
   const dispatch = useDispatch();
-  const {age} = useSelector(({setting: {storages}}) => ({
-    age: storages.age,
+  const {age} = useSelector(({config}) => ({
+    age: config.age,
   }));
 
   const onValueChange = value => {
@@ -71,7 +71,7 @@ const SelectCategoryAge = ({navigation}) => {
       return;
     }
 
-    dispatch(settingInitialize({age: value}));
+    dispatch(settingStorage('age', value));
   };
 
   const renderItem = () => {

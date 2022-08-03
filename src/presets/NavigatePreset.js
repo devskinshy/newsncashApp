@@ -11,6 +11,7 @@ import Error from '../components/Error';
 import BookMarkScreen from '../screens/BookMarkScreen';
 import TOSScreen from '../screens/TOSScreen';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
+import {INITIALIZE} from '../redux/modules/config';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,50 +24,57 @@ const styles = {
 };
 
 const NavigatePreset = () => {
-  const {loading, error, isInitialized} = useSelector(({loading, setting}) => ({
-    loading: loading['setting/INITIALIZE'],
-    error: setting.error,
-    isInitialized: setting.isInitialized,
-  }));
+  const {loading, init, error, isInitialized} = useSelector(
+    ({loading, config}) => ({
+      loading: loading[INITIALIZE],
+      init: config.init,
+      error: config.error,
+      isInitialized: config.isInitialized,
+    }),
+  );
 
   return loading ? (
     <Loading />
   ) : error ? (
     <Error />
-  ) : (
+  ) : init ? (
     <NavigationContainer theme={styles}>
-      <Stack.Navigator
-        initialRouteName={isInitialized ? 'MainScreen' : 'IntroScreen'}>
-        <Stack.Screen
-          name="IntroScreen"
-          component={IntroScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="InitSettingScreen"
-          component={InitScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="MainScreen"
-          component={MainScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="DetailScreen" component={DetailScreen} />
-        <Stack.Screen name="BookMarkScreen" component={BookMarkScreen} />
-        <Stack.Screen
-          name="TOSScreen"
-          component={TOSScreen}
-          options={{title: '서비스 이용약관'}}
-        />
-        <Stack.Screen
-          name="PrivacyPolicyScreen"
-          component={PrivacyPolicyScreen}
-          options={{title: '개인정보 처리방침'}}
-        />
-      </Stack.Navigator>
+      {!isInitialized ? (
+        <Stack.Navigator initialRouteName={'IntroScreen'}>
+          <Stack.Screen
+            name="IntroScreen"
+            component={IntroScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="InitSettingScreen"
+            component={InitScreen}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator initialRouteName={'MainScreen'}>
+          <Stack.Screen
+            name="MainScreen"
+            component={MainScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="DetailScreen" component={DetailScreen} />
+          <Stack.Screen name="BookMarkScreen" component={BookMarkScreen} />
+          <Stack.Screen
+            name="TOSScreen"
+            component={TOSScreen}
+            options={{title: '서비스 이용약관'}}
+          />
+          <Stack.Screen
+            name="PrivacyPolicyScreen"
+            component={PrivacyPolicyScreen}
+            options={{title: '개인정보 처리방침'}}
+          />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
-  );
+  ) : null;
 };
 
 export default NavigatePreset;

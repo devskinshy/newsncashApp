@@ -2,17 +2,17 @@ import React, {useCallback, useEffect} from 'react';
 import Detail from '../components/webPage/Detail';
 import Bookmark from '../components/detail/Bookmark';
 import {useDispatch, useSelector} from 'react-redux';
-import {addBookmark, deleteBookmark} from '../redux/modules/setting';
 import storageManager from '../utils/storageManager';
+import {changeBookmark} from '../redux/modules/config';
 
 const DetailScreen = ({route, navigation}) => {
   const {
     params: {idsk},
   } = route;
-  const dispatch = useDispatch();
-  const {bookmark} = useSelector(({setting}) => ({
-    bookmark: setting.bookmark,
+  const {bookmark} = useSelector(({config}) => ({
+    bookmark: config.bookmark,
   }));
+  const dispatch = useDispatch();
 
   const selectedChecker = useCallback(
     () => bookmark.includes(idsk),
@@ -20,12 +20,14 @@ const DetailScreen = ({route, navigation}) => {
   );
 
   const handleOnPress = useCallback(() => {
+    let newBookmark;
     if (selectedChecker()) {
-      dispatch(deleteBookmark(idsk));
+      newBookmark = bookmark.filter(item => item !== idsk);
     } else {
-      dispatch(addBookmark(idsk));
+      newBookmark = [...bookmark, idsk];
     }
-  }, [dispatch, idsk, selectedChecker]);
+    dispatch(changeBookmark(newBookmark));
+  }, [dispatch, bookmark, idsk, selectedChecker]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -37,11 +39,7 @@ const DetailScreen = ({route, navigation}) => {
     });
   }, [handleOnPress, navigation, route, selectedChecker]);
 
-  useEffect(() => {
-    storageManager.set('bookmark', bookmark);
-  }, [bookmark]);
-
-  return <Detail data={route.params} />;
+  return <Detail idsk={idsk} />;
 };
 
 export default DetailScreen;

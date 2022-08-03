@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {useDispatch, useSelector} from 'react-redux';
-import {settingInitialize} from '../../redux/modules/setting';
-import storageManager from '../../utils/storageManager';
+import {doneStorage, settingStorage} from '../../redux/modules/config';
 
 const styles = StyleSheet.create({
   box: {
@@ -96,11 +95,11 @@ const SELECTED_LIMIT = 3;
 
 const SelectCategoryNews = ({navigation}) => {
   const dispatch = useDispatch();
-  const {oid_list} = useSelector(({setting: {storages}}) => ({
-    oid_list: storages.oid_list,
-  }));
-  const {oid} = useSelector(({setting: {config}}) => ({
+  const {oid, gender, age, oid_list} = useSelector(({config}) => ({
     oid: config.oid,
+    gender: config.gender,
+    age: config.age,
+    oid_list: config.oid_list,
   }));
 
   const selectChecker = key => oid_list.includes(key);
@@ -112,13 +111,13 @@ const SelectCategoryNews = ({navigation}) => {
 
     const newSelectedNews = [...oid_list, newsItem];
 
-    dispatch(settingInitialize({oid_list: newSelectedNews}));
+    dispatch(settingStorage('oid_list', newSelectedNews));
   };
 
   const removeNews = key => {
     const newSelectedNews = oid_list.filter(selectKey => !(selectKey === key));
 
-    dispatch(settingInitialize({oid_list: newSelectedNews}));
+    dispatch(settingStorage('oid_list', newSelectedNews));
   };
 
   const onPress = key => {
@@ -148,13 +147,9 @@ const SelectCategoryNews = ({navigation}) => {
     ));
   };
 
-  const {storages} = useSelector(({setting}) => ({
-    storages: setting.storages,
-  }));
-
-  const onDone = async () => {
-    await storageManager.set('storage', storages);
-    navigation.reset({routes: [{name: 'MainScreen'}]});
+  const onDone = () => {
+    dispatch(doneStorage({gender, age, oid_list}));
+    // navigation.reset({routes: [{name: 'MainScreen'}]});
   };
 
   return (

@@ -3,37 +3,15 @@ import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {WEB_URL} from '../../config';
 import Web from '../Web';
+import qs from 'qs';
 
-const List = ({code, value}) => {
+const List = ({code, gender, age, oid_list}) => {
   const webRef = useRef(null);
-  const {storages} = useSelector(({setting}) => ({
-    storages: setting.storages,
-  }));
   const navigation = useNavigation();
-
-  const handleOnLoadEnd = () => {
-    let init = {
-      type: 'LIST_INIT',
-    };
-
-    if (+code < 10) {
-      init.data = storages;
-    } else {
-      init.data = {};
-    }
-
-    if (+code < 100) {
-      init.data.search_target = value;
-    } else {
-      init.data.category = value;
-    }
-
-    webRef.current.postMessage(JSON.stringify(init));
-  };
 
   const handleOnMessage = ({type, data}) => {
     switch (type) {
-      case 'LIST_SELECT':
+      case 'NEWS_SELECT':
         navigation.navigate('DetailScreen', data);
         break;
       default:
@@ -41,14 +19,21 @@ const List = ({code, value}) => {
     }
   };
 
-  return (
-    <Web
-      ref={webRef}
-      uri={`${WEB_URL}/list`}
-      handleOnLoadEnd={handleOnLoadEnd}
-      handleOnMessage={handleOnMessage}
-    />
-  );
+  const getURI = () => {
+    let uri = `${WEB_URL}/list/${code}`;
+
+    if (!+code) {
+      const search = qs.stringify(
+        {gender, age, oid_list},
+        {addQueryPrefix: true},
+      );
+      uri = `${uri}${search}`;
+    }
+
+    return uri;
+  };
+
+  return <Web ref={webRef} uri={getURI()} handleOnMessage={handleOnMessage} />;
 };
 
 export default List;

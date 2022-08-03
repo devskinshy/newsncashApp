@@ -1,18 +1,13 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import SearchHeader from '../components/search/SearchHeader';
 import Search from '../components/webPage/Search';
-import {useDispatch} from 'react-redux';
-import {settingKeyword} from '../redux/modules/search';
 
 const SearchScreen = ({navigation}) => {
-  const dispatch = useDispatch();
+  const [keyword, setKeyword] = useState('');
 
-  const handleOnPress = useCallback(
-    keyword => {
-      dispatch(settingKeyword(keyword));
-    },
-    [dispatch],
-  );
+  const handleOnPress = useCallback(keyword => {
+    setKeyword(keyword);
+  }, []);
 
   useEffect(() => {
     navigation.setOptions({
@@ -20,7 +15,7 @@ const SearchScreen = ({navigation}) => {
     });
   }, [navigation, handleOnPress]);
 
-  return <Search />;
+  return <Search keyword={keyword} />;
 };
 
 export default SearchScreen;

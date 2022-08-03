@@ -6,8 +6,11 @@ import List from '../components/webPage/List';
 const Tab = createMaterialTopTabNavigator();
 
 const NewsScreen = () => {
-  const {gnb} = useSelector(({setting: {config}}) => ({
+  const {gnb, gender, age, oid_list} = useSelector(({config}) => ({
     gnb: config.gnb,
+    gender: config.gender,
+    age: config.age,
+    oid_list: config.oid_list,
   }));
 
   const renderItem = () => {
@@ -16,7 +19,9 @@ const NewsScreen = () => {
     return items.map(([code, value]) => {
       return (
         <Tab.Screen key={code} name={value}>
-          {() => <List code={code} value={value} />}
+          {() => (
+            <List code={code} gender={gender} age={age} oid_list={oid_list} />
+          )}
         </Tab.Screen>
       );
     });

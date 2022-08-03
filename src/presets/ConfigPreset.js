@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {initialize} from '../redux/modules/setting';
+import {initialize} from '../redux/modules/config';
 
 const SettingPreset = ({children}) => {
   const dispatch = useDispatch();
